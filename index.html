@@ -10,8 +10,8 @@
 
     .card {
         margin: 30px auto;
-        width: 300px;
-        height: 300px;
+        width: 200px;
+        height: 200px;
         /*border-radius: 40px;*/
         cursor: pointer;
         transition: 0.4s;
@@ -77,27 +77,70 @@
 <body class=""  >
     <iframe src="https://free.timeanddate.com/clock/i8bb8puf/n423/fn6/fs16/fc9ff/tc000/ftb/bas2/bat1/bacfff/pa8/tt0/th2/ta1/tb4" frameborder="0" width="274" height="60" style="margin: 0 auto;display:block"></iframe>
 
- <div class="col-sm-6 row" style="float:left;display:contents" >
-    <div class="col-sm-12 mb-3">    <input  class="form-control form-control-sm w-25" type="text" id="p1" value="" /></div>
-    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p2" value="" /></div>
-    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p3" value="" /></div>
-    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p4" value="" /></div>
-    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p5" value="" /></div>
-    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p6" value="" /></div>
-    <div class="col-sm-12 mb-3">    <input class="btn btn-warning w-25" type="button" id="btnSubmit" value="Distribute" onclick="distribute()" /></div>
+ <div class="col-sm-6 row" style="float:left;display:contents">
+    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p1" value=""></div>
+    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p2" value=""></div>
+    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p3" value=""></div>
+    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p4" value=""></div>
+    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p5" value=""></div>
+    <div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p6" value=""></div>
+	<div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p7" value=""></div>
+	<div class="col-sm-12 mb-3">    <input class="form-control form-control-sm w-25" type="text" id="p8" value=""></div>
+    <div class="col-sm-12 mb-3">    <input class="btn btn-warning w-25" type="button" id="btnSubmit" value="Distribute" onclick="distribute()"></div>
 </div>
 
  <div class="col-sm-6" style="float:right">
     <div class="cards-list" id="cardList"></div>
 </div>
 
-</body>
-</html>
+
+
 
 <script type="text/javascript">
     $(function () {
         $("#btnSubmit").val('Distribute');
 
+		var p1_local = localStorage.getItem("p1");
+		var p2_local = localStorage.getItem("p2");
+		var p3_local = localStorage.getItem("p3");
+		var p4_local = localStorage.getItem("p4");
+		var p5_local = localStorage.getItem("p5");
+		var p6_local = localStorage.getItem("p6");
+		var p7_local = localStorage.getItem("p7");
+		var p8_local = localStorage.getItem("p8");
+		
+		if(p1_local != null && p1_local != '')
+		{
+			$("#p1").val(p1_local);
+		}
+		if(p2_local != null && p2_local != '')
+		{
+			$("#p2").val(p2_local);
+		}
+		if(p3_local != null && p3_local != '')
+		{
+			$("#p3").val(p3_local);
+		}
+		if(p4_local != null && p4_local != '')
+		{
+			$("#p4").val(p4_local);
+		}
+		if(p5_local != null && p5_local != '')
+		{
+			$("#p5").val(p5_local);
+		}
+		if(p6_local != null && p6_local != '')
+		{
+			$("#p6").val(p6_local);
+		}
+			if(p7_local != null && p7_local != '')
+		{
+			$("#p7").val(p7_local);
+		}
+			if(p8_local != null && p8_local != '')
+		{
+			$("#p8").val(p8_local);
+		}
     });
 
     function distribute() {
@@ -108,13 +151,26 @@
         setTimeout(function () {
      
         var array = [];
-        array.push($("#p1").val().trim());
+		
+		array.push($("#p1").val().trim());
         array.push($("#p2").val().trim());
         array.push($("#p3").val().trim());
         array.push($("#p4").val().trim());
         array.push($("#p5").val().trim());
         array.push($("#p6").val().trim());
-
+		array.push($("#p7").val().trim());
+		array.push($("#p8").val().trim());
+		
+		localStorage.setItem("p1", $("#p1").val().trim());
+		localStorage.setItem("p2", $("#p2").val().trim());
+		localStorage.setItem("p3", $("#p3").val().trim());
+		localStorage.setItem("p4", $("#p4").val().trim());
+		localStorage.setItem("p5", $("#p5").val().trim());
+		localStorage.setItem("p6", $("#p6").val().trim());
+		localStorage.setItem("p7", $("#p7").val().trim());
+		localStorage.setItem("p8", $("#p8").val().trim());
+		
+        
 
         var filtered = array.filter(function (el) {
             return el != "";
@@ -125,7 +181,7 @@
         if (result != null && result.length > 0) {
             $("#cardList").html('');
             for (var i = 0; i < result.length; i++) {
-                $("#cardList").append('<div class="card ' + [i] + '"><div class="card_image"> <img src="https://cdn.pixabay.com/photo/2016/07/20/19/36/stickies-1531100_1280.png" /> </div><div class="card_title title-white"><p>' + result[0, i].toString() + ' </p></div></div>');
+                $("#cardList").append('<div class="card ' + [i] + '"><div class="card_image"> <img src="https://cdn.pixabay.com/photo/2016/07/20/19/36/stickies-1531100_1280.png" /> </div><div class="card_title title-white"><p>' + result[0, i].toString() + ' <br/></p></div></div>');
             }
             }
 
@@ -170,30 +226,59 @@
         }
         target = [];
         n = players.length;
-        //depthToPick =6;
-        depthToPick = n;
+        depthToPick =6;
+        //depthToPick = n;
 
         mainArray = [];
-        debugger
+         
         T1 = Array.from({ length: depthToPick + 1 }, (v, k) => "F" + (k * 1));
         T1.shift(); // to remove 0 value fro array
         
         T2 = Array.from({ length: depthToPick + 1 }, (v, k) => "S" + k * 1);
         T2.shift(); // to remove 0 value fro array
         
-        mainArray = T1.concat(T2);
-        var shuffled = mainArray.sort(function () { return (.5 - Math.random()) });
-        console.log(shuffled);
-        var selection = shuffled.slice(0, n * 2);
-
  
+        mainArray = T1.concat(T2);
+		
+		var shuffled = mainArray.sort(function () { return (.5 - Math.random()) });
+        console.log(shuffled);
+		var selection = shuffled.slice(0, n * 2);
+
+		 
         for (var i = 0; i < players.length; i++) {
-            target.push([players[i].toString() + '\n', "&#10; " + selection[i].toString(), selection[n + i].toString()]);
+		
+		shuffle(selection);
+        var  x = pickRandomPlayers(selection);
+            target.push([players[i].toString() + '\n', "&#10; " + x]);
         }
         console.log(target);
         return target;
 
     }
+	
 
+function pickRandomPlayers(selection) {
+	return  selection.slice(0,3).toString();
+	//.map(fields => fields.join("\n"));
+ }
 
-</script>
+function randomNumber(min, max) {
+  return parseInt(Math.random() * (max - min) + min);
+}
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+</script></body></html>
