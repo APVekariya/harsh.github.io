@@ -102,6 +102,7 @@
     <section class="es-header sticky-header">
         <div class="es-logo">
             <img src="https://www.sbo.net/wp-content/uploads/2022/07/92-right@1x.png" height="80px" width="100px" style="padding:0" alt="Entity Logo">
+                        <p id="matchTitle" style="color:white;font-family:tahoma;font-size:40px;text-align:center"></p>
             <iframe src="https://free.timeanddate.com/clock/i9baleut/n423/tlin7/fn14/fs19/fcfff/tct/pct/ahr/pd2/tt0/tw0/th2/tb4" frameborder="0" width="134" height="51" allowtransparency="true"></iframe>
         </div>
 
@@ -311,16 +312,27 @@
             }
         }
 
-        function fetchFromOffset(offset, cb) {
+function fetchFromOffset(offset, cb) {
             $.get('https://api.cricapi.com/v1/series_info?apikey=110fb904-0998-40b0-89f2-dd1d207e1378&id=76ae85e2-88e5-4e99-83e4-5f352108aebc', function (data) {
                 if (data.status != "success") { alert("Failed"); return; }
                 let datarray = data.data;
 
+			var  matchitems= datarray["matchList"]
+					$.each(matchitems, function( index, value ) {
+					if	(value["date"]== new Date().toISOString().split('T')[0])
+					$("#matchTitle").append(value["name"] );
+					  console.log("Today  :" + value["name"] );
+					  console.log("Date :" + value["date"] );
+					  console.log( index + ": " + value );
+					  //console.log("Complete data got!", data);
+					});
+					
             });
         }
-                //fetchFromOffset(0, function (data) {
-                //    console.log("Complete data got!", data);
-                //});
+                fetchFromOffset(0, function (data) {
+                    console.log("Complete data got!", data);
+					
+                });
     </script>
 </body>
 </html>
