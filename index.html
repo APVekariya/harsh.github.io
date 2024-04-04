@@ -101,14 +101,17 @@
 <body>
     <section class="es-header sticky-header">
         <div class="es-logo">
-            <img src="https://www.sbo.net/wp-content/uploads/2022/07/92-right@1x.png" height="80px" width="100px" style="padding:0" alt="Entity Logo">
-                        <p id="matchTitle" style="color:white;font-family:tahoma;font-size:40px;text-align:center"></p>
-            <iframe src="https://free.timeanddate.com/clock/i9baleut/n423/tlin7/fn14/fs19/fcfff/tct/pct/ahr/pd2/tt0/tw0/th2/tb4" frameborder="0" width="134" height="51" allowtransparency="true"></iframe>
+            <img src="https://www.sbo.net/wp-content/uploads/2022/07/92-right@1x.png" height="80px" width="100px" style="padding:0;float:left" alt="Entity Logo">
+                        <p id="matchTitle" style="color:white;font-family: fantasy;font-size:40px;text-align:center;font-weight: 200;padding-top: 10px;"></p>
+ 
+			
+			<iframe src="https://free.timeanddate.com/clock/i9baleut/n423/tlin7/fn14/fs19/fcfff/tct/pct/pd2/tt0/tw0/th2/tb4" frameborder="0" width="134" style="float:right;margin-top:-3.5%" height="51" allowtransparency="true"></iframe>
+
         </div>
 
     </section>
 
-    <div class="row">
+    <div class="row" style="min-height:780px">
         <div style="float:left;width:30%;margin-top:12%">
             <div class=" row" style="float:left;display:contents">
                 <div class="col-sm-12 mb-3">    <input class="tb form-control form-control-sm " placeholder="Player 1" type="text" id="p1" value=""></div>
@@ -319,12 +322,10 @@ function fetchFromOffset(offset, cb) {
 
 			var  matchitems= datarray["matchList"]
 					$.each(matchitems, function( index, value ) {
-					if	(value["date"]== new Date().toISOString().split('T')[0])
-					$("#matchTitle").append(value["name"] );
-					  console.log("Today  :" + value["name"] );
-					  console.log("Date :" + value["date"] );
-					  console.log( index + ": " + value );
-					  //console.log("Complete data got!", data);
+					if	(value["date"]== new Date().toISOString().split('T')[0] )
+						$("#matchTitle").append("<p>"+value["name"] +"</p>");
+						console.log("Match :" + value["name"] );
+						console.log("Date :" + value["date"] );
 					});
 					
             });
